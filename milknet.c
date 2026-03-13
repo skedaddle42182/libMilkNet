@@ -359,8 +359,10 @@ milk_b8 milk_accept_new_client(milk_socket_manager* manager, milk_socket* listen
 
 		milk_thread_args* thread_args = (milk_thread_args*)malloc(sizeof(milk_thread_args));
 
+		MILK_ASSERT(thread_args != NULL, __FUNCTION__, __LINE__);
+
 		thread_args->client_socket = incomingClient;
-		thread_args->socket_manager->client_sockets = manager->client_sockets;
+		thread_args->socket_manager = manager;
 
 		milk_add_new_client(thread_args);
 
